@@ -1,0 +1,90 @@
+<!doctype html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Prototype</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/templatemo-style.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+        <nav class="nav">
+          <div class="burger">
+            <div class="burger__patty"></div>
+          </div>
+
+          <ul class="nav__list">
+            <li class="nav__item" title="Upload MCA file">
+              <a href="#1" class="nav__link c-blue" id="mymodal" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"><img src="img/upload1.png" alt=""></a>
+            </li>
+            <li class="nav__item" title="Reset">
+              <a href="#2" class="nav__link c-yellow scrolly" id='reset'><img src="img/reset1.png" alt=""></a>
+            </li>
+            <li class="nav__item" title="Preview">
+              <a href="#3" class="nav__link c-red" disabled='disabled'><img src="img/mobile1.png" alt=""></a>
+            </li>
+            <li class="nav__item" title="Download">
+              <a href="#4" class="nav__link c-green"  id="dwnld"><img src="img/download1.png" alt=""></a>
+            </li>
+          </ul>
+        </nav>
+        <h1 style="margin-left: 10%;color: white;" class="nav">Prototype</h1>
+        <section class="panel b-blue" id="1">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-10 box">
+                <div id="droppable" style="width:100%;height:600px;">
+                  <form id='formId'>
+
+                  </form>
+                </div>
+              </div>
+              <div class="col-md-2 box">
+                <div id='1' class="draggable">Textbox</div>
+                <div id='2' class="draggable">Textarea</div>
+                <div id='3' class="draggable">Select box</div>
+                <div id='4' class="draggable">Radio Buttons</div>
+                <div id='5' class="draggable">Checkboxes</div>
+                <div id='6' class="draggable">Label</div>
+                <div id='7' class="draggable">Table</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" id='closebtn' class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Upload EJS</h4>
+              </div>
+              <div class="modal-body">
+                <input id='ejsFileId' type='file' accept='text/plain' >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script src="js/vendor/jquery-1.11.2.min.js"></script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/vendor/jquery-3.2.1.min.js"></script>
+        <script src="js/vendor/jquery-html5-drag-drop.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+        
+
+        <script src="js/main.js"></script>
+
+    </body>
+</html>
