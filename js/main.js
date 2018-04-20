@@ -5,6 +5,9 @@
     var ejsbtn = document.querySelector("#uploadEjsBtn");
     var dwnld = document.querySelector("#dwnld");
     var resetbtn = document.querySelector("#reset");
+    var originalData = ""; 
+    var ejsDataJson = { "lines":[] };
+    var extractedHTML = "";
 
     var openFile = function(){
         alert("loadfun");
@@ -18,15 +21,43 @@
         alert("inside myfun");
     };
     var parseEJS = function(fileContent){
-        alert("..parsing file..");
+       // alert("..parsing file..");
         var i = fileContent.indexOf("<form");
         var e = fileContent.indexOf("</form>");
         var formStr = fileContent.slice(i, (e+7));
-        $('#formId').html(formStr);
+        //$('#formId').html(formStr);//preview
+        originalData = fileContent.replace(/(\r\n\t|\n|\r\t)/gm,"");
+        originalData = originalData.replace('>'+/\s/g+'<','');
+        originalData = originalData.replace('>'+/ /g+'<',''); 
+        getEjsLine(originalData);
+        $('#formId').html(extractedHTML);
+        alert(JSON.stringify(ejsDataJson));
+    };
+    var getEjsLine = function(data){
+        if(data.indexOf('<%')!==-1){
+            var startIndex = data.indexOf("<%");
+            var endIndex = data.indexOf("%>");
+            var ejsLine = data.slice(startIndex, (endIndex+2));
+            var sub = originalData.slice((originalData.indexOf(ejsLine)-20), originalData.indexOf(ejsLine));
+            lineObj = {
+                "index":originalData.indexOf(ejsLine),
+                "lineStr":ejsLine,
+                "siblingElem":sub
+            };
+            ejsDataJson.lines.push(lineObj);
+            if(startIndex==0){var startStr = "";}
+            else{
+            var startStr = data.slice(0, (startIndex-1));}
+            var endStr = data.slice((endIndex+2), data.length);
+            getEjsLine(startStr+endStr);
+        }
+        else{
+            extractedHTML = data;
+        }
     };
     var downloadEjs = function(){
         var filename = "generatedfile";
-        var text = $('#formId').html();
+        var text = reFormEjs($('#formId').html());
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
         element.setAttribute('download', filename);
@@ -37,6 +68,25 @@
         element.click();
       
         document.body.removeChild(element);
+
+
+    };
+    var reFormEjs = function(text){
+        var formedStr = text.replace(/(\r\n\t|\n|\r\t)/gm,"");
+        formedStr = formedStr.replace('>'+/\s/g+'<','');
+        for(var i=0;i<ejsDataJson.lines.length;i++){
+        //for(var i=ejsDataJson.lines.length;i>0;i--){    
+            var line = ejsDataJson.lines[i];
+            if(line.index==0){
+                formedStr = line.lineStr + formedStr;
+            }
+            else{
+                var pre = formedStr.slice(0,line.index-1);
+                var post = formedStr.slice(line.index-1, text.length);
+                formedStr = pre + line.lineStr + post;
+            }
+        }
+        return formedStr;
     };
     var openFile = function(){
         var input = event.target;
@@ -58,7 +108,7 @@
     };
     function setBackground(jQObject, color) {
         jQObject.css("background-color", color);
-      }
+    }
       
       /* This simple blink funktion adds some feedback to what
          happens when a draggable is dropped onto a droppable. */

@@ -1168,3 +1168,10 @@ body.lb-disable-scrolling {
   background: #fa5252;
 }
 select{color:black}
+
+#formId{
+  color:white;
+}
+#formId input, #formId button, #formId select{
+  color: black;
+}
