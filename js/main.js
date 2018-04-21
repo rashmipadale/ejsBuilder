@@ -201,4 +201,18 @@
     };
 
     init();
+
+
+    // Preview 
+
+    $('#channel-list li a').on('click', function() {
+        $('#channel-list li a').removeClass('active');
+        
+        $(this).addClass('active');
+
+        $('#formId')
+            .removeClass()
+            .addClass($(this)
+            .attr('id'));
+    });
 })();

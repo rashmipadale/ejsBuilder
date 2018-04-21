@@ -1,0 +1,137 @@
+/* #preview {
+  display: none;
+  margin: 0 110px;
+  background-color: rgba(164, 164, 164, 0.5);
+}
+
+#preview-container {
+  width: 362px;
+  height: 522px;
+  background: url('../img/RoseGold.png');
+  background-size: cover;
+} */
+
+.app-header {margin: 0;padding: 0;color: black !important;height: 50px;\: 0 0 10px 0;}
+
+#channel-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#channel-list li {
+  width: 33%;
+  height: 70px;
+  text-align: center;
+  margin: 2px;
+  border: 1px solid;
+}
+
+#channel-list li a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#channel-list li a.active {
+  background-color: #EEE;
+  border: none !important;
+  color: black;
+}
+
+#formId .container {
+  width: 100% !important;
+}
+
+#formId table {
+  margin: 0;
+}
+
+#formId .panel {
+  width: 100% !important;
+  display: block !important;
+  margin: 5px 0;
+}
+#formId .pagination {
+  margin: 0;
+}
+
+#formId table td {
+  padding: 10px 5px;  
+}
+
+
+/* bootstrap override */
+#formId.no-preview .alert-info {
+  background-image: none;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9edf7', endColorstr='#ffb9def0', GradientType=0);
+  background-repeat: repeat-x;
+  border-color: #9acfea;
+}
+#formId.no-preview .alert {
+  text-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#formId.no-preview .alert-info {
+  color: black;
+  background: none;
+  border: none;
+}
+#formId.no-preview .alert {
+  padding: 0;
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0;
+}
+#formId.no-preview .panel-default>.panel-heading {
+  background: none;
+  border-radius: 0;
+}
+#formId.no-preview .btn-success,
+#formId.no-preview .btn-danger {
+  background: none;
+  border: 1px solid #ccc;
+  color: black;
+}
+
+/* channel 1 styling */
+#formId.Channel1 .page-header{
+  padding-bottom: 9px;
+  margin: 20px 0 20px;
+  border-bottom: 2px solid #337ab7;
+}
+#formId.Channel1 .alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+#formId.Channel1 .alert-info {
+  border-color: #337ab7;
+  background-color: #fff;
+}
+#formId.Channel1 thead {
+  background-color: rgba(107, 204, 251, 0.36);
+}
+
+#formId.Channel1 .pagination .active {
+  border: none !important;
+}
+#formId.Channel1 .btn-success {
+  color: white;
+}
+
+#formId.Channel1 .pagination > .active > a,
+#formId.Channel1 .pagination > .active > span,
+#formId.Channel1 .pagination > .active > a:hover,
+#formId.Channel1 .pagination > .active > span:hover,
+#formId.Channel1 .pagination > .active > a:focus,
+#formId.Channel1 .pagination > .active > span:focus {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}

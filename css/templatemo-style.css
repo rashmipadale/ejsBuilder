@@ -24,7 +24,7 @@ a:hover {
 }
 
 .box{
-  border: 1px solid #232323;
+  /* border: 1px solid #232323; */
 }
 
 
@@ -209,17 +209,17 @@ section{
 }
 
 .panel {
-  margin: 0;	
-  min-height: 100vh;
-  display: -webkit-box;
+  margin: 0;
+  /* min-height: 100vh; */
+  /* display: -webkit-box; */
   display: -ms-flexbox;
-  display: flex;
+  /* display: flex; */
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   overflow: hidden;
 }
 .panel__wrapper {
@@ -259,6 +259,8 @@ section{
   width: 100%;
   overflow: hidden;
   background-attachment: fixed;
+  padding: 15px 0 0 0;
+  border-radius: 0;
 }
 
 .b-red {
@@ -1155,7 +1157,7 @@ body.lb-disable-scrolling {
 #droppable {
   width: 100%;
   height: 100%;
-  background: #455871;
+  /* background: #455871; */
   color: #fff;
   padding: 10px;
   border: 4px solid #999;
@@ -1170,7 +1172,9 @@ body.lb-disable-scrolling {
 select{color:black}
 
 #formId{
-  color:white;
+  color: black;
+  background: white;
+  padding: 10px;
 }
 #formId input, #formId button, #formId select{
   color: black;
