@@ -201,10 +201,39 @@
     };
 
     init();
+    var validate = function(div){
+        validateElement(div);
+        var childs = $(div).children();
+        if(childs.length>0){
+            for(var i=0;i<childs.length;i++){
+                validate(childs[i]);        
+            }
+        }        
+    };
 
+    var validateElement = function(elem){
+        style=$(elem).attr('style');        
+        if(typeof style != 'undefined'){
+            rules=style.split(';');
+            rules = rules.filter(function(x){
+            return (x !== (undefined || ''));
+            });      
+            
+            for (i=0;i<rules.length;i++) {        
+                rules_arr=rules[i].split(/:(?!\/\/)/g); // split by : if not followed by //
+                rules_arr[1]=$.trim(rules_arr[1]).replace('url(','').replace(')','');
+                    debugger;
+                if(rules_arr[0].trim()=='width') {
+                    if(rules_arr[1].indexOf("px")>=0){// Wrong //Highligh element
+                        $(elem).css("border","3px solid red");
+                        $(elem).attr("title",'Width should be in Percentage.');
+                    }
+                }
+            }
+        }
+    };
 
     // Preview 
-
     $('#channel-list li a').on('click', function() {
         $('#channel-list li a').removeClass('active');
         
@@ -214,5 +243,6 @@
             .removeClass()
             .addClass($(this)
             .attr('id'));
+        validate($('#formId')[0]);
     });
 })();
