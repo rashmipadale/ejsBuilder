@@ -39,6 +39,12 @@
   border: none !important;
   color: black;
 }
+#formId {
+  min-height: 200px;
+}
+#formId.no-preview {
+  min-height: 570px;
+}
 
 #formId .container {
   width: 100% !important;
@@ -208,6 +214,7 @@
   margin: 0 auto;
   padding: 37px 10px;
   background-color: transparent;
+  overflow: auto;
 }
 
 #formId.Channel2 label.col-sm-2,

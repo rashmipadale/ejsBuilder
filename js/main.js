@@ -10,7 +10,7 @@
     var extractedHTML = "";
 
     var openFile = function(){
-        alert("loadfun");
+        //alert("loadfun");
     };
     var fileContent = "";
     var openMenu = function() {
@@ -18,10 +18,10 @@
         menu.classList.toggle('nav__list--active');
     };
     var myfun = function(){
-        alert("inside myfun");
+        //alert("inside myfun");
     };
     var parseEJS = function(fileContent){
-       // alert("..parsing file..");
+       //// alert("..parsing file..");
         var i = fileContent.indexOf("<form");
         var e = fileContent.indexOf("</form>");
         var formStr = fileContent.slice(i, (e+7));
@@ -31,7 +31,7 @@
         originalData = originalData.replace('>'+/ /g+'<',''); 
         getEjsLine(originalData);
         $('#formId').html(extractedHTML);
-        alert(JSON.stringify(ejsDataJson));
+        //alert(JSON.stringify(ejsDataJson));
     };
     var getEjsLine = function(data){
         if(data.indexOf('<%')!==-1){
@@ -94,7 +94,7 @@
         reader.onload = function () {
             var text = reader.result;
             var node = document.getElementById('output');
-            //alert(text);
+            ////alert(text);
             parseEJS(text);
             //$("#mymodal .close").click();
             $("#closebtn").trigger("click");
@@ -133,7 +133,7 @@
         ejsfile.addEventListener('change',openFile, false); 
         dwnld.addEventListener('click', downloadEjs, false);
         resetbtn.addEventListener('click',resetfun, false);
-        $('#mymodal').trigger('click');
+        //$('#mymodal').trigger('click');
         $(".draggable").draggable({
             revert: true
           });
@@ -210,7 +210,14 @@
             }
         }        
     };
-
+    var openEdit = function(evt){
+        var that = $(this);
+        $('#editModal')
+        .data({
+            elemid: that.data('identifier')
+        })
+        .modal('toggle');
+    };
     var validateElement = function(elem){
         style=$(elem).attr('style');        
         if(typeof style != 'undefined'){
@@ -222,11 +229,21 @@
             for (i=0;i<rules.length;i++) {        
                 rules_arr=rules[i].split(/:(?!\/\/)/g); // split by : if not followed by //
                 rules_arr[1]=$.trim(rules_arr[1]).replace('url(','').replace(')','');
-                    debugger;
+                    //debugger;
                 if(rules_arr[0].trim()=='width') {
                     if(rules_arr[1].indexOf("px")>=0){// Wrong //Highligh element
+                        var uuid = guid();
+
                         $(elem).css("border","3px solid red");
                         $(elem).attr("title",'Width should be in Percentage.');
+                        $(elem).addClass(uuid);
+                        $(elem).data({
+                            toggle: 'modal',
+                            target: '#editModal',
+                            identifier: uuid
+                        });
+                        $("#textId").html(style);
+                        elem.addEventListener("click",openEdit);
                     }
                 }
             }
@@ -245,4 +262,27 @@
             .attr('id'));
         validate($('#formId')[0]);
     });
+
+    $('#updateCSS').on('click', function() {
+        var elementIdentifier = $('#editModal').data('elemid');
+        var stylesArray = $('#textId').val().split(';');
+        var stylesObj = stylesArray.reduce(function(acc, current) {
+            var styleArr = current.split(':');
+            acc[styleArr[0]] = styleArr[1]; 
+            return acc;
+        }, {});
+
+        $(`.${elementIdentifier}`).attr('style', stylesObj);
+
+        $('#editModal').modal('toggle');
+    });
+
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+        }
+        return s4();
+    }
 })();
