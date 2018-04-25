@@ -212,6 +212,12 @@
     };
     var openEdit = function(evt){
         var that = $(this);
+        var faultyStyle = $(`.${that.data('identifier')}`).attr('style').split(';').filter(function(style) {
+            return style.indexOf('width') !== -1;
+        })[0];
+
+        $("#textId").val(faultyStyle);
+
         $('#editModal')
         .data({
             elemid: that.data('identifier')
@@ -242,7 +248,6 @@
                             target: '#editModal',
                             identifier: uuid
                         });
-                        $("#textId").html(style);
                         elem.addEventListener("click",openEdit);
                     }
                 }
@@ -271,8 +276,9 @@
             acc[styleArr[0]] = styleArr[1]; 
             return acc;
         }, {});
+        stylesObj.border = '1px solid #ccc';
 
-        $(`.${elementIdentifier}`).attr('style', stylesObj);
+        $(`.${elementIdentifier}`).css(stylesObj);
 
         $('#editModal').modal('toggle');
     });
