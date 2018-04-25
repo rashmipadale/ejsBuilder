@@ -210,6 +210,18 @@
             }
         }        
     };
+    var openEditClass = function(evt){
+        var that = $(this);
+        var classes = $(`.${that.data('identifier')}`).attr('class');
+
+        $("#textId2").val(classes);
+
+        $('#editClassModal')
+        .data({
+            elemid: that.data('identifier')
+        })
+        .modal('toggle');
+    };
     var openEdit = function(evt){
         var that = $(this);
         var faultyStyle = $(`.${that.data('identifier')}`).attr('style').split(';').filter(function(style) {
@@ -225,7 +237,19 @@
         .modal('toggle');
     };
     var validateElement = function(elem){
-        style=$(elem).attr('style');        
+        style=$(elem).attr('style');   
+        if(!($(elem).hasClass("Channel1") || $(elem).hasClass("Channel2") || $(elem).hasClass("Channel3")) && !$(elem).hasClass("mca")){
+            $(elem).css("background-color","darkorange");
+            $(elem).attr("title",'Element is not as per MCA specifications.');
+            var uuid = guid();
+            $(elem).addClass(uuid);
+            $(elem).data({
+                toggle: 'modal',
+                target: '#editClassModal',
+                identifier: uuid
+            });
+            elem.addEventListener("click",openEditClass);
+        }   
         if(typeof style != 'undefined'){
             rules=style.split(';');
             rules = rules.filter(function(x){
@@ -281,6 +305,14 @@
         $(`.${elementIdentifier}`).css(stylesObj);
 
         $('#editModal').modal('toggle');
+    });
+
+    $('#updateClass').on('click', function() {
+        var elementIdentifier = $('#editClassModal').data('elemid');
+        var classes = $('#textId2').val();
+        $(`.${elementIdentifier}`).attr('class',classes);
+        $(`.${elementIdentifier}`).css("background-color","");
+        $('#editClassModal').modal('toggle');
     });
 
     function guid() {
