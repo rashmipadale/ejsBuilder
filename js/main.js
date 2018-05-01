@@ -68,8 +68,6 @@
         element.click();
       
         document.body.removeChild(element);
-
-
     };
     var reFormEjs = function(text){
         var formedStr = text.replace(/(\r\n\t|\n|\r\t)/gm,"");
@@ -238,6 +236,8 @@
     };
     var validateElement = function(elem){
         style=$(elem).attr('style');   
+        debugger;
+        console.log(Rules);
         if(!($(elem).hasClass("Channel1") || $(elem).hasClass("Channel2") || $(elem).hasClass("Channel3")) && !$(elem).hasClass("mca")){
             $(elem).css("background-color","darkorange");
             $(elem).attr("title",'Element is not as per MCA specifications.');
