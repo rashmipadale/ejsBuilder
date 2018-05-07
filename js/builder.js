@@ -16,7 +16,7 @@ var EjsBuilder = (function(window, undefined) {
   function init() {
     console.log("...initializing ejsBuilder...");
 
-    var text = `
+    /* var text = `
     <%- include('header'); -%>
     <form id="mini-app-form" class="mca scp-view scp-ubg">
     <div class="mca scp-layout">
@@ -172,18 +172,17 @@ var EjsBuilder = (function(window, undefined) {
       </div>
     </div>
   </form>
-  <%- include('footer'); -%>`;
+  <%- include('footer'); -%>`; */
 
-    var parsedEJS = removeWhitespace(parseEJS(text));
-    if (parsedEJS.length) {
-      $("#closebtn").trigger("click");
-      var filteredJSON = iterateAndFilterEJS(parsedEJS);
-      console.log(ejsSnippets);
-      var transformedJSON = transformMcaToHtml(filteredJSON);
-      var filteredHTML = window.himalaya.stringify(transformedJSON);
+    // var parsedEJS = removeWhitespace(parseEJS(text));
+    // if (parsedEJS.length) {
+    //   $("#closebtn").trigger("click");
+    //   var filteredJSON = iterateAndFilterEJS(parsedEJS);
+    //   var transformedJSON = transformMcaToHtml(filteredJSON);
+    //   var filteredHTML = window.himalaya.stringify(transformedJSON);
 
-      $("#scroller").html(filteredHTML);
-    }
+    //   $("#scroller").html(filteredHTML);
+    // }
 
     // Adding event Listeners
     burger.addEventListener("click", openMenu, false);
@@ -215,7 +214,7 @@ var EjsBuilder = (function(window, undefined) {
             var id = guid();
             str = `<div class="mca-form-group mca">
                       <label class="mca mca-label" for=${id}>Input Text Label:</label>
-                      <input type="text" name="mcaInput" class="form-control mca" value="" placeholder="" id=${id} />
+                      <input type="text" name="mcaInput" class="form-control mca" value="" placeholder="" id=${id} data-mcaelement="true" />
                   </div><br>`;
             ele = $(str);
             break;
@@ -234,8 +233,8 @@ var EjsBuilder = (function(window, undefined) {
             ele = $(str);
             break;
           case "4":
-            str = `<div class="mca-form-group">
-            <button class="mca btn btn-success">Button</button><br>
+            str = `<div class="mca mca-form-group">
+            <button class="mca btn btn-success" data-mcaelement="true">Button</button><br>
                             </div><br>`;
             ele = $(str);
             break;
@@ -295,7 +294,7 @@ var EjsBuilder = (function(window, undefined) {
       var elementIdentifier = $("#editClassModal").data("elemid");
       var classes = $("#textId2").val();
       $(`.${elementIdentifier}`).attr("class", classes);
-      $(`.${elementIdentifier}`).css("background-color", "");
+      $(`.${elementIdentifier}`).css("border", "none");
       $("#editClassModal").modal("toggle");
     });
 
@@ -357,11 +356,10 @@ var EjsBuilder = (function(window, undefined) {
     reader.onload = function() {
       var text = reader.result;
       var node = document.getElementById("output");
-      var parsedEJS = parseEJS(text);
+      var parsedEJS = removeWhitespace(parseEJS(text));
       if (parsedEJS.length) {
         $("#closebtn").trigger("click");
         var filteredJSON = iterateAndFilterEJS(parsedEJS);
-        console.log(ejsSnippets);
         var transformedJSON = transformMcaToHtml(filteredJSON);
         var filteredHTML = window.himalaya.stringify(transformedJSON);
 
@@ -544,7 +542,7 @@ var EjsBuilder = (function(window, undefined) {
       ) &&
       !$(elem).hasClass("mca")
     ) {
-      $(elem).css("background-color", "darkorange");
+      $(elem).css("border", "3px dashed red");
       $(elem).attr("title", "Element is not as per MCA specifications.");
       var uuid = guid();
       $(elem).addClass(uuid);
@@ -679,7 +677,9 @@ var EjsBuilder = (function(window, undefined) {
     Fixing Non-MCA tags 
    */
 
-  var openFixMCATags = function() {
+  var openFixMCATags = function(e) {
+    e.preventDefault();
+
     var that = $(this);
 
     $("#fixMcaTagsModal")
@@ -872,6 +872,10 @@ var EjsBuilder = (function(window, undefined) {
   function removeWhitespace(nodes) {
     return removeEmptyNodes(stripWhitespace(nodes));
   }
+
+  $(document).on('click', 'button', function(e) {
+    e.preventDefault();
+  });
 
   // explicitly return public methods when this object is instantiated
   return {

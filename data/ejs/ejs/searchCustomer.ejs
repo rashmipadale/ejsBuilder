@@ -6,7 +6,9 @@
 				<div class="mca">
 					<div class="container mca">
 						<div class="page-header mca">
-							<h3 class="">Customer Details Change</h3>
+								<% if (user) { %>
+									<h3 class="">Customer Details Change</h3>
+								<% } %>
 						</div>
 						<div class="mca">
 							<div class="mca">
@@ -151,3 +153,4 @@
 			</div>
 		</div>
 </form>
+<%- include('footer'); -%>
