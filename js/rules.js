@@ -12,7 +12,7 @@ var Rules = {
         },
         {
             "name":"mcaComponents",
-            "validate":false,
+            "validate":true,
             "checks": ["mca-"]
         }
     ]

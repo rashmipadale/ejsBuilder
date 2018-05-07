@@ -11,7 +11,7 @@
   background-size: cover;
 } */
 
-.app-header {margin: 0;padding: 0;color: while !important;height: 50px;\: 0 0 10px 0;}
+.app-header {margin: 0;padding: 0;color: while !important;height: 50px; margin: 0 0 10px 0;}
 
 #channel-list {
   display: flex;
@@ -221,7 +221,7 @@
   margin: 0 auto;
   padding: 37px 10px;
   background-color: transparent;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 #formId.Channel2 label.col-sm-2,
@@ -238,7 +238,9 @@
 }
 
 #formId.Channel2 input[name="customerId"],
-#formId.Channel3 input[name="customerId"] {
+#formId.Channel3 input[name="customerId"],
+#formId.Channel2 input[name="OrganizationId"],
+#formId.Channel3 input[name="OrganizationId"]{
   margin-bottom: 7px;
 }
 
@@ -263,8 +265,11 @@
   background: none;
   background-color: #f2fbfe;
 }
-#formId.Channel2 .panel-default>.panel-heading {
+#formId.Channel2 .panel-heading{
   background: #e5ebee;
+  color: #0074a6;
+}
+#formId.Channel2 .mca-label {
   color: #0074a6;
 }
 
@@ -277,6 +282,7 @@
   height: 514px;
   padding: 20px 55px;
   margin: 30px auto;
+  overflow: hidden;
 }
 
 #formId.Channel3 .alert {
@@ -285,9 +291,29 @@
 
 #formId.Channel3 .container {
   padding-bottom: 15px;
+  overflow: hidden;
 }
 
 #formId.Channel3 #mini-app-form {
-  height: 474px;
+  /* height: 474px; */
+  /* overflow: hidden; */
+}
+
+.invalid-mca-tag {
+  border: 3px dashed red;
+}
+
+#scroller {
+  width: 97%;
+  height: 100%;
   overflow: auto;
+}
+
+.mca-label {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.mca-form-group {
+  padding: 0 16px;
 }

@@ -1,8 +1,9 @@
+<%- include('header'); -%>
 <form id="mini-app-form" class="mca scp-view scp-ubg">
 	<div class="mca scp-layout">
 		<div class="mca scp-view-header" id="header">
 			<div id="root" class="mca">
-				<divv class="mca">
+				<div class="mca">
 					<div class="container mca">
 						<div class="page-header mca">
 							<h3 class="">Customer Details Change</h3>
@@ -17,10 +18,24 @@
 										<div class="mca panel-body">
 											<div class="mca form-group col-sm-12">
 												<div class="mca col-sm-10">
-													<input class="mca form-control" placeholder="Enter customerId Id" name="customerId" value="1" type="text">
+													<input class="mca form-control" placeholder="Enter customerId Id" name="customerId" value="" type="text">
 												</div>
 												<div class="mca col-sm-2">
 													<button class="mca btn btn-success">SEARCH</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="mca panel panel-default">
+										<div class="mca panel-heading">Search Organization </div>
+										<div class="mca panel-body">
+											<div class="mca form-group col-sm-12">
+												<div class="mca col-sm-10">
+													<mca-input type="text" class="mca form-control" placeholder="Enter Organization Name" value="" name="OrganizationId">
+													</mca-input>
+												</div>
+												<div class="mca col-sm-2">
+													<mca-button class="mca btn btn-success">SEARCH</mca-button>
 												</div>
 											</div>
 										</div>
@@ -70,47 +85,20 @@
 																	</tr>
 																</thead>
 																<tbody class="mca">
-																		<tr class="mca">
-																			<td class="mca" style="text-align: center;">
-																			</td>
-																			<td tabindex="1" style="text-align: left;" class="mca"></td>
-																			<td tabindex="2" style="text-align: left;" class="mca"></td>
-																			<td tabindex="3" style="text-align: left;" class="mca"></td>
-																			<td tabindex="4" style="text-align: left;" class="mca"></td>
-																			<td tabindex="5" style="text-align: left;" class="mca"></td>
-																			<td tabindex="6" style="text-align: left;" class="mca"></td>
-																			<td tabindex="7" style="text-align: left;" class="mca"></td>
-																		</tr>
-																	</tbody>
-															</table>
-														</div>
-														<!-- <div class="react-bs-container-body" style="height: 100%;">
-															<table class="table table-striped table-bordered table-hover table-condensed">
-																<colgroup>
-																	<col style="width: 30px; min-width: 30px;">
-																	<col>
-																	<col>
-																	<col>
-																	<col>
-																	<col>
-																	<col>
-																	<col>
-																</colgroup>
-																<tbody>
-																	<tr class="">
-																		<td style="text-align: center;">
+																	<tr class="mca">
+																		<td class="mca" style="text-align: center;">
 																		</td>
-																		<td tabindex="1" style="text-align: left;" class=""></td>
-																		<td tabindex="2" style="text-align: left;" class=""></td>
-																		<td tabindex="3" style="text-align: left;" class=""></td>
-																		<td tabindex="4" style="text-align: left;" class=""></td>
-																		<td tabindex="5" style="text-align: left;" class=""></td>
-																		<td tabindex="6" style="text-align: left;" class=""></td>
-																		<td tabindex="7" style="text-align: left;" class=""></td>
+																		<td tabindex="1" style="text-align: left;" class="mca"></td>
+																		<td tabindex="2" style="text-align: left;" class="mca"></td>
+																		<td tabindex="3" style="text-align: left;" class="mca"></td>
+																		<td tabindex="4" style="text-align: left;" class="mca"></td>
+																		<td tabindex="5" style="text-align: left;" class="mca"></td>
+																		<td tabindex="6" style="text-align: left;" class="mca"></td>
+																		<td tabindex="7" style="text-align: left;" class="mca"></td>
 																	</tr>
 																</tbody>
 															</table>
-														</div> -->
+														</div>
 													</div>
 													<div class="mca react-bs-table-pagination">
 														<div class="mca row" style="margin-top: 15px;">
@@ -162,5 +150,4 @@
 				</div>
 			</div>
 		</div>
-	</div>
 </form>
