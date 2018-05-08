@@ -294,7 +294,9 @@ var EjsBuilder = (function(window, undefined) {
       var elementIdentifier = $("#editClassModal").data("elemid");
       var classes = $("#textId2").val();
       $(`.${elementIdentifier}`).attr("class", classes);
-      $(`.${elementIdentifier}`).css("border", "none");
+      $(`.${elementIdentifier}`)
+        .css("border", "none")
+        .attr("title", "");
       $("#editClassModal").modal("toggle");
     });
 
@@ -610,7 +612,7 @@ var EjsBuilder = (function(window, undefined) {
             target: "#fixMcaTagsModal",
             identifier: uuid
           });
-          $(elem).on("click", openFixMCATags);
+          $(elem).off("click").on("click", openFixMCATags);
         }
         break;
       case "button":
@@ -626,7 +628,7 @@ var EjsBuilder = (function(window, undefined) {
             target: "#fixMcaTagsModal",
             identifier: uuid
           });
-          $(elem).on("click", openFixMCATags);
+          $(elem).off("click").on("click", openFixMCATags);
         }
         break;
       case "default":
@@ -769,6 +771,25 @@ var EjsBuilder = (function(window, undefined) {
         }
       ],
       children: mcaEleObj.children
+    }),
+    "mca-form": mcaEleObj => ({
+      type: "element",
+      tagName: "form",
+      attributes: [
+        {
+          key: "class",
+          value: filterValue(mcaEleObj.attributes, "class")
+        },
+        {
+          key: "data-mcaelement",
+          value: "true"
+        },
+        {
+          key: "id",
+          value: filterValue(mcaEleObj.attributes, "id")
+        }
+      ],
+      children: mcaEleObj.children
     })
   };
 
@@ -810,7 +831,22 @@ var EjsBuilder = (function(window, undefined) {
         }
       ],
       children: mcaEleObj.children
-    })
+    }),
+    form: mcaEleObj => ({
+      type: "element",
+      tagName: "mca-form",
+      attributes: [
+        {
+          key: "class",
+          value: filterValue(mcaEleObj.attributes, "class")
+        },
+        {
+          key: "id",
+          value: filterValue(mcaEleObj.attributes, "id")
+        }
+      ],
+      children: mcaEleObj.children
+    }) 
   };
 
   function transformMcaToHtml(json) {
@@ -837,7 +873,8 @@ var EjsBuilder = (function(window, undefined) {
       if (
         elemObj.type === "element" &&
         (elemObj.tagName.includes("input") ||
-          elemObj.tagName.includes("button"))
+          elemObj.tagName.includes("button") || 
+          elemObj.tagName.includes("form"))
       ) {
         var htmlToMca = HtmlToMcaMap[elemObj.tagName](elemObj);
         return htmlToMca;

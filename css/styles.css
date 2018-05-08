@@ -10,7 +10,15 @@
   background: url('../img/RoseGold.png');
   background-size: cover;
 } */
-
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  background-image: url(../img/first-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .app-header {margin: 0;padding: 0;color: while !important;height: 50px; margin: 0 0 10px 0;}
 
 #channel-list {
@@ -300,7 +308,7 @@
 }
 
 .invalid-mca-tag {
-  border: 3px dashed red;
+  border: 3px dashed red !important;
 }
 
 #scroller {

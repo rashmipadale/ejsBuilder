@@ -1,5 +1,5 @@
 <%- include('header'); -%>
-<form id="mini-app-form" class="mca scp-view scp-ubg">
+<mca-form id="mini-app-form" class="mca scp-view scp-ubg">
 	<div class="mca scp-layout">
 		<div class="mca scp-view-header" id="header">
 			<div id="root" class="mca">
@@ -16,7 +16,7 @@
 									<span class="mca glyphicon glyphicon-info-sign" aria-hidden="true"></span>Please search the customer and select customer name to proceed with the contact details change!</div>
 								<div class="mca">
 									<div class="mca panel panel-default">
-										<div class="mca panel-heading" style="width:100px;">Search Customer </div>
+										<div class="mca panel-heading" style="width:400px;">Search Customer </div>
 										<div class="mca panel-body">
 											<div class="mca form-group col-sm-12">
 												<div class="mca col-sm-10">
@@ -106,7 +106,7 @@
 														<div class="mca row" style="margin-top: 15px;">
 															<div class="mca col-md-6 col-xs-6 col-sm-6 col-lg-6">
 																<span class="mca dropdown   react-bs-table-sizePerPage-dropdown">
-																	<button class="mca btn btn-default btn-secondary dropdown-toggle" id="pageDropDown" data-toggle="dropdown" aria-expanded="false"
+																	<button data-mcaelement="true" class="mca btn btn-default btn-secondary dropdown-toggle" id="pageDropDown" data-toggle="dropdown" aria-expanded="false"
 																	 aria-haspopup="true">10
 																		<span class="mca">
 																			<span class="mca caret"></span>
@@ -152,5 +152,5 @@
 				</div>
 			</div>
 		</div>
-</form>
+</mca-form>
 <%- include('footer'); -%>
